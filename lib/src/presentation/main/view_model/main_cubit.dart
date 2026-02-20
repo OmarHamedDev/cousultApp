@@ -12,7 +12,7 @@ class MainCubit extends Cubit<MainState> {
   MainCubit() : super(MainInitial());
 
 
-  int selectedIndex = 2;
+  int selectedIndex = 4;
    List<Widget>bodyWidget=[
      ProfileView(),
      const ReelsView(),

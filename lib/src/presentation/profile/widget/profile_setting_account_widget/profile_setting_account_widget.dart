@@ -1,6 +1,8 @@
-import 'package:consult_app/core/extension/extension.dart';
+import 'package:consult_app/config/routes/page_route_name.dart';
+import 'package:consult_app/src/presentation/profile/view_model/profile_cubit.dart';
 import 'package:flutter/material.dart';
-
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import '../../../../../../core/utils/functions/spaceing/spaceing.dart';
 import '../profile_theme_widgeth/profile_theme_widget.dart';
 import '../widgets/build_profile_section_title_widget.dart';
@@ -15,17 +17,36 @@ class ProfileSettingAccountWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
-      BuildProfileSectionTitleWidget(title:  "إعدادات الحساب : ",
-      ),
-        verticalSpace(10),
+        const BuildProfileSectionTitleWidget(title: "إعدادات الأمان : "),
+        verticalSpace(12),
+        BuildProfileSettingItemWidget(
+          title: "تحديث البيانات",
+          subtitle: "تعديل معلومات حسابك الشخصي",
+          icon: Icons.person_outline_rounded,
+          iconColor: Colors.blueAccent,
+          onTap: () async{
+           var result=await context.push(PageRouteName.editProfile,
+           extra: context.read<ProfileCubit>().appUserEntity,
+           );
+           if(result==true){
+             context.read<ProfileCubit>().getProfile();
+           }
+          },
+        ),
+        verticalSpace(12),
+
         BuildProfileSettingItemWidget(
           title: "تغيير كلمة المرور",
           subtitle: "تحديث كلمة السر الخاصة بك",
           icon: Icons.lock_outline_rounded,
           iconColor: Colors.orangeAccent,
-          onTap: () {},
+          onTap: () {
+            context.push(PageRouteName.changePassword);
+          },
         ),
-        verticalSpace(10),
+        verticalSpace(24),
+        const BuildProfileSectionTitleWidget(title: "النشاط والمظهر : "),
+        verticalSpace(12),
         BuildProfileSettingItemWidget(
           title: "الجلسات",
           subtitle: "تابع كل جلساتك فى مكان واحد",
@@ -33,27 +54,19 @@ class ProfileSettingAccountWidget extends StatelessWidget {
           iconColor: Colors.teal,
           onTap: () {},
         ),
-        verticalSpace(10),
-        BuildProfileSettingItemWidget(
-          title: "الإشعارات",
-          subtitle: "التحكم في التنبيهات والرسائل",
-          icon: Icons.notifications_none_rounded,
-          iconColor: Colors.blueAccent,
-          onTap: () {},
-        ),
-        verticalSpace(10),
-        ProfileThemeWidget(),
-        verticalSpace(10),
+        verticalSpace(12),
+        const ProfileThemeWidget(),
+        verticalSpace(24),
+        const BuildProfileSectionTitleWidget(title: "الدعم والخصوصية : "),
+        verticalSpace(12),
         BuildProfileSettingItemWidget(
           title: "سياسة الخصوصية",
           subtitle: "كيف نحمي بياناتك ومعلوماتك",
           icon: Icons.privacy_tip_outlined,
           iconColor: Colors.blueGrey,
-          onTap: () {
-            // Navigate to Privacy Policy
-          },
+          onTap: () {},
         ),
-        verticalSpace(12),
+        verticalSpace(16),
       ],
     );
   }

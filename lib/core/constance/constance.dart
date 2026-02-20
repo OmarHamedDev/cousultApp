@@ -8,4 +8,11 @@ class AppConstance {
     'CAREER_GUIDANCE': 'توجيه مهني',
     'PSYCHOLOGICAL_COUNSELING': 'استشارات نفسية',
   };
+
+  static final Map<String, String> bookingStatusMap = {
+    'PENDING': 'قيد الانتظار',
+    'CONFIRMED': 'تم التأكيد',
+    'CANCELLED': 'ملغي',
+    'COMPLETED': 'مكتمل',
+  };
 }

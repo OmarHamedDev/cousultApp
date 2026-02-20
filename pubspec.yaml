@@ -29,6 +29,10 @@ dependencies:
   awesome_dialog:
   cached_network_image:
   pin_code_fields:
+  provider:
+  shared_preferences:
+  intl:
+  flutter_intl_phone_field:
 dev_dependencies:
   injectable_generator:
   build_runner:

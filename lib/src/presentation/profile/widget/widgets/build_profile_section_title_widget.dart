@@ -14,3 +14,16 @@ class BuildProfileSectionTitleWidget extends StatelessWidget {
     );
   }
 }
+Widget _buildSectionTitle(String title) {
+  return Padding(
+    padding: const EdgeInsets.symmetric(vertical: 8.0),
+    child: Text(
+      title,
+      style: TextStyle(
+        fontSize: 14,
+        fontWeight: FontWeight.w600,
+        color: Colors.grey[700],
+      ),
+    ),
+  );
+}

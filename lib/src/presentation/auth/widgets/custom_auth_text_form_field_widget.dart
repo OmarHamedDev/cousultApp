@@ -9,10 +9,12 @@ class CustomAuthTextFormFieldWidget extends StatelessWidget {
   final TextInputType? keyboardType;
   final String? prefixText;
   final Widget? suffixIcon;
+  final EdgeInsets ? padding;
   final TextEditingController controller;
 
   const CustomAuthTextFormFieldWidget({
     super.key,
+    this.padding,
     this.suffixIcon,
    required this.controller ,
     this.validator,
@@ -44,7 +46,7 @@ class CustomAuthTextFormFieldWidget extends StatelessWidget {
         hintStyle: TextStyle(fontSize: 14.sp, color: Colors.black38),
         fillColor: Colors.white,
         filled: true,
-        contentPadding: EdgeInsets.symmetric(vertical: 16.h, horizontal: 12.w),
+        contentPadding:padding ??  EdgeInsets.symmetric(vertical: 16.h, horizontal: 12.w),
         errorStyle: TextStyle(fontSize: 12.sp, color: Color(0xFFFFD700)),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12.r),

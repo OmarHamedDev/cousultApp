@@ -13,6 +13,7 @@ class AppDarkTheme {
     cardColor: AppColors.kGray,
     disabledColor: AppColors.kWeight,
     canvasColor: AppColors.kWeight,
+    dividerColor: AppColors.kWeight,
 
     fontFamily: "Rubik",
     textTheme: TextTheme(
@@ -66,6 +67,12 @@ class AppDarkTheme {
         fontWeight: FontWeight.w700,
         color: AppColors.kBlack,
       ),
+        labelMedium: TextStyle(
+          fontSize: 14.sp,
+          fontWeight: FontWeight.w500,
+          color:  AppColors.kWeight,
+
+        )
   ),
   );
 }

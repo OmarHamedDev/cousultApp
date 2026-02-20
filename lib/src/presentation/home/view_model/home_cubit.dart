@@ -61,7 +61,9 @@ class HomeCubit extends Cubit<HomeState> {
       await getAllConsultants();
     } else {
       await getAllConsultants(
-        services: AppConstance.serviceTranslationConsult.keys.elementAt(index),
+        services:
+        AppConstance.serviceTranslationConsult
+            .keys.elementAt(index),
       );
     }
     emit(ChangeSelectedCategoryIndexState());

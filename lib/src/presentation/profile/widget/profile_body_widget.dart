@@ -11,24 +11,17 @@ class ProfileBodyWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: SingleChildScrollView(
-        padding: symmetricPaddingSpace(h: 16, v: 10),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            CustomTabBarWidget(title: "الملف الشخصي"),
-            verticalSpace(30),
-            ProfileMainUserCardWidget(),
-            verticalSpace(25),
-            ProfileSettingAccountWidget(),
-            LogoOutButtonWidget(
-              onTap: () {},
-            ),
-            verticalSpace(20),
-          ],
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        ProfileMainUserCardWidget(),
+        verticalSpace(15),
+        ProfileSettingAccountWidget(),
+        LogoOutButtonWidget(
+          onTap: () {},
         ),
-      ),
+        verticalSpace(20),
+      ],
     );
   }
 }

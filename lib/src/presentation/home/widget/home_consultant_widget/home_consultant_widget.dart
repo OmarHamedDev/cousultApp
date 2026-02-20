@@ -22,11 +22,13 @@ class HomeConsultantWidget extends StatelessWidget {
         children: [
           CustomTabBarWidget(
            isBackButton: true,
-            title: "الاستشاريون",button: GestureDetector(
+            title: "الاستشاريون",
+            button: GestureDetector(
             onTap: () {
               context.read<HomeCubit>().changeBodyWidget(true);
             },
-            child: Icon(Icons.arrow_forward_ios_sharp,color: AppColors.mainColor,size: 20.sp),),),
+            child: Icon(Icons.arrow_forward_ios_sharp,color: AppColors.mainColor,size: 20.sp),),
+          ),
           verticalSpace(20),
           CustomSearchHomeConsultantWidget(),
           verticalSpace(10),

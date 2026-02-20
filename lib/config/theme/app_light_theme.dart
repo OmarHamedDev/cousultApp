@@ -7,10 +7,11 @@ class AppLightTheme {
   static ThemeData themeData = ThemeData(
     useMaterial3: true,
     brightness: Brightness.dark,
-    scaffoldBackgroundColor: AppColors.kWeight,
+    scaffoldBackgroundColor: AppColors.kWeightLight,
     primaryColor: AppColors.mainColor,
     cardColor: AppColors.kWeight,
     canvasColor: AppColors.kGray,
+    dividerColor: AppColors.kBlack,
     disabledColor: AppColors.mainColor,
     fontFamily: "Rubik",
     textTheme: TextTheme(
@@ -66,6 +67,13 @@ class AppLightTheme {
         fontSize: 14.sp,
         color: AppColors.mainColor,
       ),
+      labelMedium: TextStyle(
+    fontSize: 14.sp,
+        fontWeight: FontWeight.w500,
+        color:  AppColors.kBlack,
+
+  )
     ),
+
   );
 }

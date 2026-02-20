@@ -9,6 +9,7 @@ void showAwesomeDialog(
       required String desc,
       required void Function() onOk,
       void Function()? onCancel,
+      void Function(DismissType)? onDismiss, // أضفنا ده هنا
       required DialogType dialogType,
       String? buttonText,
     }) {
@@ -21,6 +22,7 @@ void showAwesomeDialog(
     desc: desc,
     width: kIsWeb ? 450 : null,
     dismissOnTouchOutside: dismiss,
+    onDismissCallback: onDismiss, // ربطناه بالـ AwesomeDialog
     dialogBackgroundColor: Colors.white,
     titleTextStyle: TextStyle(
         color: AppColors.mainColor, fontSize: 22, fontWeight: FontWeight.bold),
@@ -39,7 +41,6 @@ void showAwesomeDialog(
     },
   ).show();
 }
-
 Widget _buildCustomIcon(DialogType type) {
   IconData iconData;
   Color color;

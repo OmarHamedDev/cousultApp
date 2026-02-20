@@ -27,16 +27,24 @@ import '../src/data/repositories_impl/auth_repository_impl.dart' as _i267;
 import '../src/data/repositories_impl/consultant_repository_impl.dart' as _i866;
 import '../src/domain/repository/auth_repository.dart' as _i365;
 import '../src/domain/repository/consultants_repository.dart' as _i373;
+import '../src/domain/use_case/auth/change_password_use_case.dart' as _i129;
+import '../src/domain/use_case/auth/edit_profile_use_case.dart' as _i103;
+import '../src/domain/use_case/auth/get_profile_use_case.dart' as _i140;
 import '../src/domain/use_case/auth/register_with_email_and_password_account_use_case.dart'
     as _i1058;
 import '../src/domain/use_case/get_all_consultants_use_case.dart' as _i801;
 import '../src/domain/use_case/get_consultants_person_use_case.dart' as _i163;
+import '../src/presentation/auth/change_password/view_model/change_password_cubit.dart'
+    as _i994;
+import '../src/presentation/auth/edit_profile/view_model/edit_profile_cubit.dart'
+    as _i1030;
 import '../src/presentation/auth/login/view_model/login_cubit.dart' as _i78;
 import '../src/presentation/auth/register/view_model/register_cubit.dart'
     as _i144;
 import '../src/presentation/consultant_is_person_details/view_model/consultants_person_details_cubit.dart'
     as _i109;
 import '../src/presentation/home/view_model/home_cubit.dart' as _i233;
+import '../src/presentation/profile/view_model/profile_cubit.dart' as _i101;
 
 extension GetItInjectableX on _i174.GetIt {
   // initializes the registration of main-scope dependencies inside of GetIt
@@ -71,10 +79,22 @@ extension GetItInjectableX on _i174.GetIt {
       () =>
           _i163.GetConsultantsPersonUseCase(gh<_i373.ConsultantsRepository>()),
     );
+    gh.factory<_i129.ChangePasswordUseCase>(
+      () => _i129.ChangePasswordUseCase(gh<_i365.AuthRepository>()),
+    );
+    gh.factory<_i103.EditProfileUseCase>(
+      () => _i103.EditProfileUseCase(gh<_i365.AuthRepository>()),
+    );
+    gh.factory<_i140.GetProfileUseCase>(
+      () => _i140.GetProfileUseCase(gh<_i365.AuthRepository>()),
+    );
     gh.factory<_i1058.RegisterWithEmailAndPasswordAccountUseCase>(
       () => _i1058.RegisterWithEmailAndPasswordAccountUseCase(
         gh<_i365.AuthRepository>(),
       ),
+    );
+    gh.factory<_i1030.EditProfileCubit>(
+      () => _i1030.EditProfileCubit(gh<_i103.EditProfileUseCase>()),
     );
     gh.factory<_i109.ConsultantsPersonDetailCubit>(
       () => _i109.ConsultantsPersonDetailCubit(
@@ -88,6 +108,12 @@ extension GetItInjectableX on _i174.GetIt {
       () => _i144.RegisterCubit(
         gh<_i1058.RegisterWithEmailAndPasswordAccountUseCase>(),
       ),
+    );
+    gh.factory<_i101.ProfileCubit>(
+      () => _i101.ProfileCubit(gh<_i140.GetProfileUseCase>()),
+    );
+    gh.factory<_i994.ChangePasswordCubit>(
+      () => _i994.ChangePasswordCubit(gh<_i129.ChangePasswordUseCase>()),
     );
     return this;
   }
