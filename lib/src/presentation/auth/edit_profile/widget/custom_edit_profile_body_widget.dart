@@ -25,7 +25,7 @@ class CustomEditProfileBodyWidget extends StatelessWidget {
             CustomTabBarWidget(
               title: "تعديل الملف الشخصي",
               isBackButton: true,
-              button: GestureDetector(
+              button: InkWell(
                 onTap: () {
                   context.pop();
                 },

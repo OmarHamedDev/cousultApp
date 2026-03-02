@@ -10,6 +10,10 @@ abstract class AuthRepository {
   Future<Result<AppUserEntity>>getProfile();
   Future<Result<String>>changePassword({required ChangePasswordRequestModel changePasswordRequest});
   Future<Result<AppUserEntity>>editProfile(ProfileRequest profileRequest);
-
+Future<Result<String>>login(String email,String password);
+  Future<Result<String>>logoOut();
+  Future<Result<String>>forgetPassword({required String email});
+  Future<Result<String>> verifyOtp({required String email,required String otp});
+  Future<Result<String>> resetPassword({required String email,required String otp,required String password});
 }
 

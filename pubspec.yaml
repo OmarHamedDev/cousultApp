@@ -33,6 +33,11 @@ dependencies:
   shared_preferences:
   intl:
   flutter_intl_phone_field:
+  google_sign_in:
+  flutter_secure_storage:
+  webview_flutter:
+  better_player_plus:
+  image_picker:
 dev_dependencies:
   injectable_generator:
   build_runner:

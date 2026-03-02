@@ -1,4 +1,5 @@
 import 'package:consult_app/src/data/api/api_manger.dart';
+import 'package:consult_app/src/data/model/response/booking_user_response_model/booking_user_response_model.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../../model/response/consultants_person_response_model/consultants_person_response_model.dart';
@@ -27,6 +28,11 @@ class ConsultantsRemoteDataSourceImpl implements ConsultantsRemoteDataSource {
   @override
   Future<ConsultantsPersonResponseModel> getConsultantsPersonById({required String id}) {
     return apiManger.getConsultantsPersonById(id: id);
+  }
+
+  @override
+  Future<BookingUserResponseModel> getAllUserBookings({String? status}) {
+    return apiManger.getAllUserBookings(status: status);
   }
 
 }

@@ -3,6 +3,7 @@ import 'package:consult_app/src/presentation/auth/edit_profile/view_model/edit_p
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:image_picker/image_picker.dart';
 
 import '../../../../../core/utils/widget/cached_net_work_image_widget.dart';
 
@@ -11,36 +12,53 @@ class CustomEditProfileImageWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var editProfileCubit=context.read<EditProfileCubit>();
-    return Stack(
-      alignment: Alignment.bottomRight,
-      children: [
-        Container(
-          padding: EdgeInsets.all(3.r),
-          decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            border: Border.all(color: Colors.indigo.withOpacity(0.2), width: 2),
-          ),
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(60.r),
-            child:  CachedNetworkImageWidget(
-              imageUrl: editProfileCubit.image,
-              width: 110,
-              height: 110,
+    var editProfileCubit = context.read<EditProfileCubit>();
+    return BlocBuilder<EditProfileCubit, EditProfileState>(
+      builder: (context, state) {
+        return Stack(
+          alignment: Alignment.bottomRight,
+          children: [
+            Container(
+              padding: EdgeInsets.all(3.r),
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                border: Border.all(
+                  color: Colors.indigo.withOpacity(0.2),
+                  width: 2,
+                ),
+              ),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(60.r),
+                child: CachedNetworkImageWidget(
+                  imageUrl: editProfileCubit.image,
+                  width: 110,
+                  height: 110,
+                ),
+              ),
             ),
-          ),
-        ),
-        GestureDetector(
-          onTap: () {
-            // منطق اختيار صورة من المعرض
-          },
-          child: CircleAvatar(
-            radius: 18.r,
-            backgroundColor: AppColors.mainColor,
-            child: Icon(Icons.edit, size: 18.sp, color: Colors.white),
-          ),
-        ),
-      ],
+            GestureDetector(
+              onTap: () async {
+                final ImagePicker picker = ImagePicker();
+                final XFile? image = await picker.pickImage(
+                  source: ImageSource.gallery,
+                  imageQuality: 70,
+                );
+
+                if (image != null) {
+                  context.read<EditProfileCubit>().uploadImage(
+                    imageFile: image,
+                  );
+                }
+              },
+              child: CircleAvatar(
+                radius: 18.r,
+                backgroundColor: AppColors.mainColor,
+                child: Icon(Icons.edit, size: 18.sp, color: Colors.white),
+              ),
+            ),
+          ],
+        );
+      },
     );
   }
 }

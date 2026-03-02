@@ -6,14 +6,11 @@ import 'config/localization/flutter_localization_service.dart' show FlutterLocal
 import 'config/routes/app_routes.dart' show AppRoutes;
 import 'config/theme/app_dark_theme.dart';
 import 'config/theme/theme_logjc/theme_logic_provider.dart';
-
 class ConsultApp extends StatelessWidget {
   const ConsultApp({super.key});
-
   @override
   Widget build(BuildContext context) {
     var localization = FlutterLocalizationService().localization;
-
     return ChangeNotifierProvider(
      create: (context) => ThemeLogicProvider(),
       child: ScreenUtilInit(
@@ -38,3 +35,4 @@ class ConsultApp extends StatelessWidget {
     );
   }
 }
+

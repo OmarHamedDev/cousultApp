@@ -31,6 +31,8 @@ class ConsultantsResponseModel {
 
 @JsonSerializable()
 class Data {
+  @JsonKey(name: "id")
+  final String? id;
   @JsonKey(name: "publicId")
   final String? publicId;
   @JsonKey(name: "name")
@@ -43,6 +45,8 @@ class Data {
   final int? rating;
   @JsonKey(name: "sessionDuration")
   final int? sessionDuration;
+  @JsonKey(name: "sessionPrice")
+  final num? sessionPrice;
   @JsonKey(name: "_count")
   final Count? count;
 
@@ -50,6 +54,8 @@ class Data {
     this.publicId,
     this.name,
     this.title,
+    this.id,
+    this.sessionPrice,
     this.avatar,
     this.rating,
     this.sessionDuration,

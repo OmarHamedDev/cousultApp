@@ -23,41 +23,48 @@ class ConsultantDetailsView extends StatelessWidget {
     final String consultantPersonId = GoRouterState.of(context).extra as String;
 
     return BlocProvider(
-      create: (context) => getIt.get<ConsultantsPersonDetailCubit>()
-        ..getConsultantsPerson(id: consultantPersonId),
+      create: (context) =>
+          getIt.get<ConsultantsPersonDetailCubit>()
+            ..getConsultantsPerson(id: consultantPersonId),
       child: Scaffold(
-        backgroundColor: Colors.white,
-        body: BlocBuilder<ConsultantsPersonDetailCubit, ConsultantsPersonDetailsState>(
-          builder: (context, state) {
-            final cubit = context.read<ConsultantsPersonDetailCubit>();
+        body:
+            BlocBuilder<
+              ConsultantsPersonDetailCubit,
+              ConsultantsPersonDetailsState
+            >(
+              builder: (context, state) {
+                final cubit = context.read<ConsultantsPersonDetailCubit>();
 
-            if (state is ConsultantsPersonDetailsLoading) {
-              return HandleState.loading();
-            } else if (state is ConsultantsPersonDetailsError) {
-              return HandleState.error(
-                message: state.message ?? "حدث خطأ ما",
-                onRetry: () => cubit.getConsultantsPerson(id: consultantPersonId),
-              );
-            } else if (cubit.consultantsPersonEntity != null) {
-              final entity = cubit.consultantsPersonEntity!;
-              return Stack(
-                children: [
-                  CustomScrollView(
-                    physics: const BouncingScrollPhysics(),
-                    slivers: [
-                      ConsultantHeaderPersonDetailsWidget(entity: entity),
-                      SliverToBoxAdapter(
-                        child: _ConsultantContent(entity: entity),
+                if (state is ConsultantsPersonDetailsLoading) {
+                  return HandleState.loading();
+                } else if (state is ConsultantsPersonDetailsError) {
+                  return HandleState.error(
+                    message: state.message ?? "حدث خطأ ما",
+                    onRetry: () =>
+                        cubit.getConsultantsPerson(id: consultantPersonId),
+                  );
+                } else if (cubit.consultantsPersonEntity != null) {
+                  final entity = cubit.consultantsPersonEntity!;
+                  return Stack(
+                    children: [
+                      CustomScrollView(
+                        physics: const BouncingScrollPhysics(),
+                        slivers: [
+                          ConsultantHeaderPersonDetailsWidget(entity: entity),
+                          SliverToBoxAdapter(
+                            child: _ConsultantContent(entity: entity),
+                          ),
+                        ],
+                      ),
+                      ConsultPersonBottomBookingBarWidget(
+                        price: entity.sessionPrice,
                       ),
                     ],
-                  ),
-                  ConsultPersonBottomBookingBarWidget(price: entity.sessionPrice),
-                ],
-              );
-            }
-            return const SizedBox.shrink();
-          },
-        ),
+                  );
+                }
+                return const SizedBox.shrink();
+              },
+            ),
       ),
     );
   }
@@ -69,6 +76,8 @@ class _ConsultantContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context); // تعريف الثيم هنا
+
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 24.h),
       child: Column(
@@ -76,29 +85,37 @@ class _ConsultantContent extends StatelessWidget {
         children: [
           ConsultContentPersonMainSectionWidget(entity: entity),
           verticalSpace(24),
-          ConsultContentPersonStatsCardWidget(entity: entity),
+           ConsultContentPersonStatsCardWidget(entity: entity),
           verticalSpace(32),
           const ConsultantContentPersonSectionLabelWidget(label: "نبذة عني :"),
           verticalSpace(12),
-          Text(entity.description, style: TextStyle(fontSize: 15.sp, color: Colors.grey[600], height: 1.6)),
+          Text(
+            entity.description,
+            style: TextStyle(
+              fontSize: 15.sp,
+              color: theme.dividerColor.withOpacity(0.8),
+              height: 1.6,
+            ),
+          ),
           verticalSpace(20),
-          const ConsultantContentPersonSectionLabelWidget(label: "المقترح الأكاديمي : "),
+          const ConsultantContentPersonSectionLabelWidget(
+            label: "المقترح الأكاديمي : ",
+          ),
           verticalSpace(12),
-          Text(entity.proofPurpose, style: TextStyle(fontSize: 15.sp, color: Colors.grey[600], height: 1.6)),
-          verticalSpace(32),
-          const ConsultantContentPersonSectionLabelWidget(label: "المواعيد المتاحة"),
+          Text(
+            entity.proofPurpose,
+            style: TextStyle(
+              fontSize: 15.sp,
+              color: theme.dividerColor.withOpacity(0.8),
+              height: 1.6,
+            ),
+          ),
+
           verticalSpace(16),
-          const _CalendarPlaceholder(),
+          // const _CalendarPlaceholder(),
           verticalSpace(100),
         ],
       ),
     );
   }
-}
-
-
-class _CalendarPlaceholder extends StatelessWidget {
-  const _CalendarPlaceholder();
-  @override
-  Widget build(BuildContext context) => Container(width: double.infinity, padding: EdgeInsets.all(20.r), decoration: BoxDecoration(color: Colors.grey[50], borderRadius: BorderRadius.circular(16.r), border: Border.all(color: Colors.grey[100]!)), child: Column(children: [Icon(Icons.calendar_today_outlined, color: Colors.grey[400], size: 28.sp), verticalSpace(12), Text("لا يوجد مواعيد متاحة حالياً", style: TextStyle(fontSize: 14.sp, color: Colors.grey[500], fontWeight: FontWeight.w500))]));
 }

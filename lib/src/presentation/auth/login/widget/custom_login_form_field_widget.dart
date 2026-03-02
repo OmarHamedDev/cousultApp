@@ -14,11 +14,11 @@ class CustomLoginFormFieldWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     var loginCubit = context.read<LoginCubit>();
     return Form(
-      key: GlobalKey<FormState>(),
+      key: loginCubit.formKey,
       child: Column(
         children: [
           CustomAuthTextFormFieldWidget(
-            controller: TextEditingController(),
+            controller:loginCubit.emailController,
             hint: "البريد الإلكتروني",
             icon: Icons.email_outlined,
             keyboardType: TextInputType.emailAddress,
@@ -28,7 +28,7 @@ class CustomLoginFormFieldWidget extends StatelessWidget {
           BlocBuilder<LoginCubit, LoginState>(
             builder: (context, state) {
               return CustomAuthTextFormFieldWidget(
-                controller: TextEditingController(),
+                controller: loginCubit.passwordController,
                 hint: "كلمة المرور",
                 validator: Validations.validatePassword,
                 icon: Icons.lock_outline,

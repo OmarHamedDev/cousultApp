@@ -1,12 +1,15 @@
 import 'package:consult_app/core/extension/extension.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../core/styles/colors/app_colors.dart' show AppColors;
 import '../../../../../core/utils/functions/spaceing/spaceing.dart';
 import '../../widgets/custom_auth_button_widget.dart';
 import '../../widgets/handle_back_ground_auth_widget.dart';
 import '../../widgets/navigate_to_login_widget.dart';
+import '../view_model/reset_password_cubit.dart';
 import 'custom_reset_password_form_field_widget.dart';
+
 class ResetPasswordBodyWidget extends StatelessWidget {
   const ResetPasswordBodyWidget({super.key});
 
@@ -30,9 +33,13 @@ class ResetPasswordBodyWidget extends StatelessWidget {
           CustomAuthButtonWidget(
             text: "حفظ كلمة المرور",
             onPressed: () {
-              // if (_formKey.currentState!.validate()) {
-              //   // ابدأ أكشن تغيير الباسورد هنا
-              // }
+              if (context
+                  .read<ResetPasswordCubit>()
+                  .formKey
+                  .currentState!
+                  .validate()) {
+                context.read<ResetPasswordCubit>().resetPassword();
+              }
             },
             color: AppColors.kBlack,
           ),

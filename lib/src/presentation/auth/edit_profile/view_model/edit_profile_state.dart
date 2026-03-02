@@ -10,3 +10,13 @@ class EditProfileErrorState extends EditProfileState {
   final String message;
   EditProfileErrorState(this.message);
 }
+
+class UploadImageLoadingState extends EditProfileState {}
+class UploadImageSuccessState extends EditProfileState {
+  final String imageUrl;
+  UploadImageSuccessState(this.imageUrl);
+}
+class UploadImageErrorState extends EditProfileState {
+  final String message;
+  UploadImageErrorState(this.message);
+}

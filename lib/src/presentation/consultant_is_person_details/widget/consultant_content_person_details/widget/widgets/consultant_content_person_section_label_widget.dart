@@ -1,3 +1,4 @@
+import 'package:consult_app/core/extension/extension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -8,6 +9,6 @@ class ConsultantContentPersonSectionLabelWidget extends StatelessWidget {
   const ConsultantContentPersonSectionLabelWidget({super.key, required this.label});
 
   @override
-  Widget build(BuildContext context) => Text(label, style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.w800, color: AppColors.kBlack));
+  Widget build(BuildContext context) => Text(label,style: context.theme.textTheme.headlineLarge);
 
 }

@@ -6,6 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../core/utils/functions/spaceing/spaceing.dart';
 import '../../../../../core/utils/functions/validators/validations.dart';
 import '../../widgets/custom_auth_text_form_field_widget.dart';
+import 'custom_phone_field_widget.dart';
 
 class CustomRegisterFormFieldWidget extends StatelessWidget {
   const CustomRegisterFormFieldWidget({super.key});
@@ -34,14 +35,15 @@ class CustomRegisterFormFieldWidget extends StatelessWidget {
             validator: Validations.validateEmail,
           ),
           verticalSpace(10),
-          CustomAuthTextFormFieldWidget(
-            controller: registerCubit.phoneController,
-            hint: "رقم الهاتف",
-            validator: Validations.validatePhoneNumber,
-            icon: Icons.phone_android_outlined,
-            keyboardType: TextInputType.phone,
-            prefixText: "+20 ",
-          ),
+          CustomPhoneFieldWidget(),
+          // CustomAuthTextFormFieldWidget(
+          //   controller: registerCubit.phoneController,
+          //   hint: "رقم الهاتف",
+          //   validator: Validations.validatePhoneNumber,
+          //   icon: Icons.phone_android_outlined,
+          //   keyboardType: TextInputType.phone,
+          //   prefixText: "+20 ",
+          // ),
           verticalSpace(10),
           BlocBuilder<RegisterCubit, RegisterState>(
             builder: (context, state) {

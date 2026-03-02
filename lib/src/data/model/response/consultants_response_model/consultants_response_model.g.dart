@@ -32,6 +32,8 @@ Data _$DataFromJson(Map<String, dynamic> json) => Data(
   publicId: json['publicId'] as String?,
   name: json['name'] as String?,
   title: json['title'] as String?,
+  id: json['id'] as String?,
+  sessionPrice: json['sessionPrice'] as num?,
   avatar: json['avatar'] as String?,
   rating: (json['rating'] as num?)?.toInt(),
   sessionDuration: (json['sessionDuration'] as num?)?.toInt(),
@@ -41,12 +43,14 @@ Data _$DataFromJson(Map<String, dynamic> json) => Data(
 );
 
 Map<String, dynamic> _$DataToJson(Data instance) => <String, dynamic>{
+  'id': instance.id,
   'publicId': instance.publicId,
   'name': instance.name,
   'title': instance.title,
   'avatar': instance.avatar,
   'rating': instance.rating,
   'sessionDuration': instance.sessionDuration,
+  'sessionPrice': instance.sessionPrice,
   '_count': instance.count,
 };
 

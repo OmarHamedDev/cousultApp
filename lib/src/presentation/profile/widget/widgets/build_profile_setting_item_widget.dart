@@ -56,11 +56,6 @@ class BuildProfileSettingItemWidget extends StatelessWidget {
           title,
           style: context.textTheme.displayLarge?.copyWith(fontSize: 15.sp),
 
-          // style: TextStyle(
-          //   fontSize: 14.sp,
-          //   fontWeight: FontWeight.w600,
-          //   color: const Color(0xFF2D2D2D),
-          // ),
         ),
         subtitle: Text(
           subtitle,
@@ -70,7 +65,12 @@ class BuildProfileSettingItemWidget extends StatelessWidget {
             ? SizedBox(
                 height: 25.h,
                 child: Switch.adaptive(
+                  activeThumbColor: AppColors.mainColor,
+                  activeTrackColor: AppColors.mainColor.withOpacity(0.4),
+                  inactiveThumbColor: Colors.grey[300],
+                  inactiveTrackColor: Colors.grey[100],
                   value: switchValue,
+
                   onChanged: (val) {
                     if (onChanged != null) {
                       onChanged!(val);
@@ -82,7 +82,7 @@ class BuildProfileSettingItemWidget extends StatelessWidget {
             : Icon(
                 Icons.arrow_forward_ios_rounded,
                 size: 17.sp,
-                color: context.theme.dividerColor
+                color: context.theme.primaryColor
               ),
       ),
     );

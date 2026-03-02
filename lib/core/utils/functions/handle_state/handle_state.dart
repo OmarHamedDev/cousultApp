@@ -13,10 +13,11 @@ class HandleState {
 
   static Widget emptyList({required Widget child,
    required BuildContext contextApp,
+    double height =  0.4,
     required List list, String message = "Empty List"}) {
     if (list.isEmpty) {
       return  SizedBox(
-          height: MediaQuery.of(contextApp).size.height * 0.4.h,
+          height: MediaQuery.of(contextApp).size.height * height.h,
           child: empty(message: message));
     } else {
       return child;

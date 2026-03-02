@@ -37,7 +37,8 @@ class BookingUserItemTabsWidget extends StatelessWidget {
           isSelected ? AppColors.kWeight :
           AppColors.kGreen, size: 20.sp),
           horizontalSpace(8),
-          Text(title, style: context.textTheme.bodySmall?.copyWith(
+          Text(title, style:
+          context.textTheme.bodySmall?.copyWith(
             color: isSelected ? AppColors.kWeight : Color(0xFF070D05),
           )),
         ],

@@ -12,28 +12,32 @@ class ConsultantHeaderPersonDetailsWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final isDark = theme.brightness == Brightness.dark;
+
     return SliverAppBar(
       expandedHeight: 320.h,
       pinned: true,
       stretch: true,
-      backgroundColor: AppColors.mainColor,
+      backgroundColor: theme.scaffoldBackgroundColor,
       elevation: 0,
       leadingWidth: 70.w,
       leading: const CustomBackButton(),
       flexibleSpace: LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints) {
           var top = constraints.biggest.height;
-          bool isCollapsed =
-              top <= (MediaQuery.of(context).padding.top + kToolbarHeight + 20);
+          bool isCollapsed = top <= (MediaQuery.of(context).padding.top + kToolbarHeight + 10);
+
           return FlexibleSpaceBar(
             centerTitle: true,
             title: AnimatedOpacity(
               duration: const Duration(milliseconds: 200),
               opacity: isCollapsed ? 1.0 : 0.0,
               child: Text(
-                "د/${entity.name}",
+                "د/ ${entity.name}",
                 style: TextStyle(
-                  color: AppColors.kBlack,
+                  // التعديل: استخدام لون الـ AppBar Title من الثيم (kBlack في اللايت و kGray في الدارك)
+                  color: theme.appBarTheme.titleTextStyle?.color ?? AppColors.kBlack,
                   fontSize: 18.sp,
                   fontWeight: FontWeight.bold,
                 ),
@@ -47,15 +51,17 @@ class ConsultantHeaderPersonDetailsWidget extends StatelessWidget {
                   height: 320.h,
                   width: double.infinity,
                 ),
+                // التعديل الجوهري: التدرج اللوني (Gradient)
                 Container(
                   decoration: BoxDecoration(
                     gradient: LinearGradient(
                       begin: Alignment.bottomCenter,
                       end: const Alignment(0.0, -0.2),
                       colors: [
-                        Colors.white.withOpacity(1.0),
-                        Colors.white.withOpacity(0.7),
-                        Colors.white.withOpacity(0.0),
+                        // استخدام خلفية السكافولد بدلاً من الأبيض الصريح
+                        theme.scaffoldBackgroundColor.withOpacity(1.0),
+                        theme.scaffoldBackgroundColor.withOpacity(0.7),
+                        theme.scaffoldBackgroundColor.withOpacity(0.0),
                       ],
                       stops: const [0.0, 0.4, 1.0],
                     ),

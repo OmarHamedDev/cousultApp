@@ -22,9 +22,7 @@ class RegisterCubit extends Cubit<RegisterState> {
     emit(ChangePasswordVisibility());
   }
 
-  TextEditingController nameController = TextEditingController(
-    text: 'omar',
-  );
+  TextEditingController nameController = TextEditingController(text: 'omar');
   TextEditingController emailController = TextEditingController(
     text: 'omarmakram@gmail.com',
   );
@@ -32,19 +30,17 @@ class RegisterCubit extends Cubit<RegisterState> {
     text: '12345678',
   );
   TextEditingController phoneController = TextEditingController(
-    text:  "01154544334"
+    text: "01154544334",
   );
-  TextEditingController countryCodeController = TextEditingController(
-    text:  "EG"
-  );
-   GlobalKey<FormState>formKey=GlobalKey<FormState>();
+  String countryCode = "EG";
+  GlobalKey<FormState> formKey = GlobalKey<FormState>();
   RegisterRequest get registerRequest {
     return RegisterRequest(
       name: nameController.text,
       email: emailController.text,
       password: passwordController.text,
       phone: "+20${phoneController.text}",
-      countryCode: countryCodeController.text,
+      countryCode: countryCode,
     );
   }
 

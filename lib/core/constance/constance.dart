@@ -10,9 +10,20 @@ class AppConstance {
   };
 
   static final Map<String, String> bookingStatusMap = {
+     "All" :"الكل ",
     'PENDING': 'قيد الانتظار',
     'CONFIRMED': 'تم التأكيد',
-    'CANCELLED': 'ملغي',
     'COMPLETED': 'مكتمل',
+    'CANCELLED': 'ملغي',
+  };
+
+  static final Map<String, String> days = {
+    'MONDAY': "الاثنين",
+    'TUESDAY': "الثلاثاء",
+    'WEDNESDAY': "الأربعاء",
+    'THURSDAY': "الخميس",
+    'FRIDAY': "الجمعة",
+    'SATURDAY': "السبت",
+    'SUNDAY': "الأحد",
   };
 }

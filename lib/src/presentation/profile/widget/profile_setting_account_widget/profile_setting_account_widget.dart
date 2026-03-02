@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import '../../../../../../core/utils/functions/spaceing/spaceing.dart';
+import '../../../../../core/styles/colors/app_colors.dart';
 import '../profile_theme_widgeth/profile_theme_widget.dart';
 import '../widgets/build_profile_section_title_widget.dart';
 import '../widgets/build_profile_setting_item_widget.dart';
@@ -60,11 +61,24 @@ class ProfileSettingAccountWidget extends StatelessWidget {
         const BuildProfileSectionTitleWidget(title: "الدعم والخصوصية : "),
         verticalSpace(12),
         BuildProfileSettingItemWidget(
+          title: "من نحن",
+          subtitle: "تعرف على منصة استشير ورؤيتنا",
+          icon: Icons.info_outline_rounded,
+          iconColor: AppColors.mainColor,
+          onTap: () {
+            context.push(PageRouteName.aboutAs);
+          },
+        ),
+        verticalSpace(12),
+
+        BuildProfileSettingItemWidget(
           title: "سياسة الخصوصية",
-          subtitle: "كيف نحمي بياناتك ومعلوماتك",
+          subtitle: "كيف نحمي بياناتك ومعلوماتك وخصوصيتك",
           icon: Icons.privacy_tip_outlined,
           iconColor: Colors.blueGrey,
-          onTap: () {},
+          onTap: () {
+             context.push(PageRouteName.privacyPolicy); // تأكد من إضافة المسار في الـ Router
+          },
         ),
         verticalSpace(16),
       ],

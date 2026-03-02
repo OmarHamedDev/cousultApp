@@ -21,18 +21,17 @@ class HandleBlocListenerChangePasswordState extends StatelessWidget {
           HandleSnakeBarDialog.popDialog(context);
           showAwesomeDialog(
             context,
-            title: "حدث خطا  هنا",
+            title: "فشل تحديث كلمة المرور",
             desc: state.message,
             onOk: () {},
             dialogType: DialogType.error,
           );
         } else if (state is ChangePasswordSuccessState) {
-          HandleSnakeBarDialog.popDialog(context); // قفل لودينج
+          HandleSnakeBarDialog.popDialog(context);
           showAwesomeDialog(
             context,
-            title: "تم بنجاح",
-            desc: "تم تغيير كلمة المرور بنجاح",
-            dialogType: DialogType.success,
+            title: "تم التحديث بنجاح",
+            desc: "تم تغيير كلمة المرور الخاصة بك، يرجى استخدام كلمة المرور الجديدة في المرات القادمة.",            dialogType: DialogType.success,
             onOk: () {
               context.pop();
             },

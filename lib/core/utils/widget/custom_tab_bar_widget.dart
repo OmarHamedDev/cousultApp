@@ -1,7 +1,9 @@
+import 'package:consult_app/config/routes/page_route_name.dart';
 import 'package:consult_app/core/extension/extension.dart';
 import 'package:consult_app/core/utils/functions/spaceing/spaceing.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import '../../styles/colors/app_colors.dart';
 import '../../styles/images/app_images.dart' show AppImages;
 
@@ -24,10 +26,18 @@ class CustomTabBarWidget extends StatelessWidget {
         ),
         Row(
           children: [
-            Icon(
-              Icons.notifications_outlined,
-              color: AppColors.mainColor,
-              size: 25.sp,
+            InkWell(
+
+             onTap: () {
+               context.push(
+                 PageRouteName.notification
+               );
+
+             }, child: Icon(
+                Icons.notifications_outlined,
+                color: AppColors.mainColor,
+                size: 25.sp,
+              ),
             ),
             horizontalSpace(2),
             Icon(

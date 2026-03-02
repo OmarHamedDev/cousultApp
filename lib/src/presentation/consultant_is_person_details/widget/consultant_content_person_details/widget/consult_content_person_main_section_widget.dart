@@ -1,3 +1,4 @@
+import 'package:consult_app/core/extension/extension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -22,11 +23,7 @@ class ConsultContentPersonMainSectionWidget extends StatelessWidget {
             children: [
               Text(
                 "د/${entity.name}",
-                style: TextStyle(
-                  fontSize: 26.sp,
-                  fontWeight: FontWeight.w800,
-                  color: AppColors.kBlack,
-                ),
+                style: context.textTheme.headlineLarge
               ),
               verticalSpace(4),
               Text(

@@ -28,7 +28,6 @@ class CustomEditProfileFormFieldWidget extends StatelessWidget {
           CustomAuthTextFormFieldWidget(
             controller: editProfileCubit.nameController!,
             padding: EdgeInsets.symmetric(vertical: 14.h, horizontal: 12.w),
-
             hint: "أدخل اسمك بالكامل",
             icon: Icons.person_outline_rounded,
             validator: Validations.validateName

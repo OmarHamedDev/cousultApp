@@ -66,9 +66,14 @@ class HomeConsultCardWidget extends StatelessWidget {
               child: Divider(color: Colors.grey[100], thickness: 1),
             ),
             ConsultantBookingSectionCardWidget(
-              price: 100.toString(),
+            price: consultantsEntity.sessionPrice.toString(),
               //consultantsEntity.price.toString(),
-              onBookTap: () {},
+              onBookTap: () {
+                context.push(
+                  PageRouteName.avilableDateView,
+                  extra: consultantsEntity
+                );
+              },
             ),
             verticalSpace(8),
             ConsultDurationInfoCardWidget(

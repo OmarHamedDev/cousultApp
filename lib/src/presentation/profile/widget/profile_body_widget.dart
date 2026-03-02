@@ -18,7 +18,9 @@ class ProfileBodyWidget extends StatelessWidget {
         verticalSpace(15),
         ProfileSettingAccountWidget(),
         LogoOutButtonWidget(
-          onTap: () {},
+          onTap: () {
+
+          },
         ),
         verticalSpace(20),
       ],

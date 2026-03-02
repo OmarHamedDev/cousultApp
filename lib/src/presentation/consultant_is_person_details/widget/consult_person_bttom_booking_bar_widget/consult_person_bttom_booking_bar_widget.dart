@@ -6,18 +6,30 @@ import '../../../../../core/utils/functions/spaceing/spaceing.dart' show horizon
 
 class ConsultPersonBottomBookingBarWidget extends StatelessWidget {
   final num price;
-  const ConsultPersonBottomBookingBarWidget({required this.price});
+  const ConsultPersonBottomBookingBarWidget({super.key, required this.price});
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final isDark = theme.brightness == Brightness.dark;
+
     return Align(
       alignment: Alignment.bottomCenter,
       child: Container(
         padding: EdgeInsets.fromLTRB(20.w, 15.h, 20.w, 35.h),
         decoration: BoxDecoration(
-          color: Colors.white,
+          // التعديل هنا: استخدام surface من الـ colorScheme
+          // في اللايت هيديك kWeight وفي الدارك هيديك darkSurface اللي إنت معرفه
+          color: theme.colorScheme.surface,
           borderRadius: BorderRadius.vertical(top: Radius.circular(24.r)),
-          boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.06), blurRadius: 20, offset: const Offset(0, -5))],
+          boxShadow: [
+            BoxShadow(
+              // في الدارك مود بنخلي الظل أسود جداً وبشفافية أعلى عشان يحدد الكارت
+              color: Colors.black.withOpacity(isDark ? 0.4 : 0.06),
+              blurRadius: 20,
+              offset: const Offset(0, -5),
+            )
+          ],
         ),
         child: Row(
           children: [
@@ -25,8 +37,21 @@ class ConsultPersonBottomBookingBarWidget extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text("تكلفة الجلسة", style: TextStyle(fontSize: 12.sp, color: Colors.grey[500])),
-                Text("$price ج.م", style: TextStyle(fontSize: 20.sp, fontWeight: FontWeight.w800, color: AppColors.mainColor)),
+                Text(
+                  "تكلفة الجلسة",
+                  style: theme.textTheme.bodyMedium?.copyWith(
+                    fontSize: 12.sp,
+                    // اللون الرمادي (0xFF919191) اللي إنت حاطه في الثيم
+                  ),
+                ),
+                Text(
+                  "$price ج.م",
+                  style: TextStyle(
+                    fontSize: 20.sp,
+                    fontWeight: FontWeight.w800,
+                    color: AppColors.mainColor,
+                  ),
+                ),
               ],
             ),
             horizontalSpace(20),
@@ -39,7 +64,14 @@ class ConsultPersonBottomBookingBarWidget extends StatelessWidget {
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.r)),
                   elevation: 0,
                 ),
-                child: Text("احجز الآن", style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.bold, color: Colors.white)),
+                child: Text(
+                  "احجز الآن",
+                  style: TextStyle(
+                    fontSize: 16.sp,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
+                ),
               ),
             ),
           ],

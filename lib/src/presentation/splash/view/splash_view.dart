@@ -1,8 +1,11 @@
 import 'package:consult_app/config/routes/page_route_name.dart';
+import 'package:consult_app/core/caching/secure_storge/caching_Data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../../core/caching/cache_keys.dart';
+import '../../../../core/caching/secure_storge/secure_storage.dart';
 import '../../../../core/styles/images/app_images.dart';
 
 class SplashView extends StatefulWidget {
@@ -12,10 +15,14 @@ class SplashView extends StatefulWidget {
   State<SplashView> createState() => _SplashViewState();
 }
 
-class _SplashViewState extends State<SplashView> with SingleTickerProviderStateMixin {
+class _SplashViewState extends State<SplashView>
+    with SingleTickerProviderStateMixin {
   late final AnimationController _controller;
   late final Animation<double> _widthAnimation;
   late final Animation<double> _opacityAnimation;
+
+  CachingDataSecureStorage cachingDataSecureStorageImpl =
+      SecureStorageFunction();
 
   @override
   void initState() {
@@ -28,15 +35,24 @@ class _SplashViewState extends State<SplashView> with SingleTickerProviderStateM
 
     _widthAnimation = TweenSequence<double>([
       TweenSequenceItem(
-        tween: Tween<double>(begin: 0, end: 128.w).chain(CurveTween(curve: Curves.easeIn)),
+        tween: Tween<double>(
+          begin: 0,
+          end: 128.w,
+        ).chain(CurveTween(curve: Curves.easeIn)),
         weight: 30,
       ),
       TweenSequenceItem(
-        tween: Tween<double>(begin: 128.w, end: 226.w).chain(CurveTween(curve: Curves.easeInOut)),
+        tween: Tween<double>(
+          begin: 128.w,
+          end: 226.w,
+        ).chain(CurveTween(curve: Curves.easeInOut)),
         weight: 40,
       ),
       TweenSequenceItem(
-        tween: Tween<double>(begin: 226.w, end: 328.w).chain(CurveTween(curve: Curves.elasticOut)),
+        tween: Tween<double>(
+          begin: 226.w,
+          end: 328.w,
+        ).chain(CurveTween(curve: Curves.elasticOut)),
         weight: 30,
       ),
     ]).animate(_controller);
@@ -51,12 +67,25 @@ class _SplashViewState extends State<SplashView> with SingleTickerProviderStateM
     _controller.addStatusListener((status) {
       if (status == AnimationStatus.completed) {
         if (mounted) {
-          Future.delayed(const Duration(seconds: 1), () {
-            if (mounted) context.go(PageRouteName.mainScreen);
+          Future.delayed(const Duration(seconds: 1), () async{
+            await getRouteName();
+            if (mounted) context.go(routeName);
           });
         }
       }
     });
+  }
+
+  String routeName = PageRouteName.loginScreen;
+  Future<void> getRouteName() async {
+    String? token = await cachingDataSecureStorageImpl.readData(
+      key: CacheKeys.token,
+    );
+    if (token != null && token.isNotEmpty) {
+      routeName = PageRouteName.mainScreen;
+    } else {
+      routeName = PageRouteName.loginScreen;
+    }
   }
 
   @override

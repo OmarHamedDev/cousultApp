@@ -2,10 +2,13 @@ import 'package:bloc/bloc.dart';
 import 'package:consult_app/core/api/common/api_result.dart';
 import 'package:consult_app/src/domain/entities/app_user_entity.dart';
 import 'package:consult_app/src/domain/use_case/auth/edit_profile_use_case.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:injectable/injectable.dart';
 import 'package:meta/meta.dart';
 
+import '../../../../../core/service/upload_photo/upload_photo.dart';
 import '../../../../data/model/request/profile_request/Profile_request.dart';
 
 part 'edit_profile_state.dart';
@@ -48,6 +51,20 @@ class EditProfileCubit extends Cubit<EditProfileState> {
       case Failures<AppUserEntity>():
         emit(EditProfileErrorState(result.exception));
         break;
+    }
+  }
+
+  Future<void> uploadImage({required XFile imageFile}) async {
+    emit(UploadImageLoadingState());
+    try {
+      var imageUrl = await UploadPhotoService().uploadPhoto(
+        profileImagePath: imageFile.path,
+        fieldName: "profile_pics",
+      );
+      image = imageUrl;
+      emit(UploadImageSuccessState(imageUrl));
+    } catch (e) {
+      emit(EditProfileErrorState(e.toString()));
     }
   }
 }

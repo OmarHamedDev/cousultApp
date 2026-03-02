@@ -12,7 +12,8 @@ class ProfileThemeWidget extends StatelessWidget {
     return BuildProfileSettingItemWidget(
       title: "الوضع الليلي",
       subtitle: "تغيير مظهر التطبيق",
-      icon: isDarkMode ? Icons.dark_mode : Icons.dark_mode_outlined, // تغيير الأيقونة حسب الحالة
+      icon: isDarkMode ? Icons.dark_mode :
+      Icons.dark_mode_outlined, // تغيير الأيقونة حسب الحالة
       iconColor: Colors.indigo,
       isSwitch: true,
       switchValue: isDarkMode,

@@ -3,13 +3,15 @@ import 'package:consult_app/src/presentation/bookings_user/widget/booking_user_b
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../dependency_injection/di.dart';
+
 class BookingUserView extends StatelessWidget {
   const BookingUserView({super.key});
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => BookingsUserCubit(),
+      create: (context) =>getIt<BookingsUserCubit>()..getAllBookings(),
       child: Scaffold(
         body: SafeArea(
           child: BookingUserBodyWidget()

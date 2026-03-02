@@ -10,5 +10,11 @@ class PageRouteName {
   static const String mainScreen="/main";
   static const String bookingUser="/bookingUser";
   static const String consultantIsDetailsView="/ConsultantIsDetailsView";
+  static const String notification="/notification";
+  static const String avilableDateView="/avilableDateView";
+  static const String aboutAs="/aboutAs";
+  static const String privacyPolicy="/privacyPolicy";
+
+
 
 }

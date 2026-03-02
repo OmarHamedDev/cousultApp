@@ -1,6 +1,9 @@
+import 'package:consult_app/dependency_injection/di.dart';
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 import '../../../core/api/constants/api_constants.dart';
+import '../../../core/caching/cache_keys.dart';
+import '../../../core/caching/secure_storge/caching_Data.dart';
 
 @module
 abstract class DioProvider {
@@ -33,9 +36,14 @@ abstract class DioProvider {
 
 class AppInterceptors implements Interceptor {
   @override
-  void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
-    String token =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJkNmVkM2VjOS1lOTg5LTQxZjctOWRhNC1iY2IzMzA0ZDE2YTYiLCJyb2xlIjoiVVNFUiIsInBlcm1pc3Npb25zIjpbXSwiaWF0IjoxNzcxNTQ0NzgxLCJleHAiOjE3NzIxNDk1ODF9.gEbwXTEIg0uFVnushuUWcGIq-23m53KfWMaPAoxB1VI";
+  void onRequest(
+    RequestOptions options,
+    RequestInterceptorHandler handler,
+  ) async {
+    String? token = await getIt.get<CachingDataSecureStorage>().readData(
+      key: CacheKeys.token,
+    );
+
     options.headers['Authorization'] = 'Bearer $token';
 
     return handler.next(options);

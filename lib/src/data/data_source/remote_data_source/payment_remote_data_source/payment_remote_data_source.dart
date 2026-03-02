@@ -1,0 +1,6 @@
+import 'package:consult_app/src/data/model/request/user_booking_with_payment_request_model/User_booking_with_payment_request_model.dart';
+import 'package:consult_app/src/data/model/response/user_booking_with_payment_response_model/user_booking_with_payment_response_model.dart';
+
+abstract class PaymentRemoteDataSource {
+  Future<UserBookingWithPaymentResponseModel>getUserBookingWithPayment(UserBookingWithPaymentRequestModel userBookingWithPaymentRequestModel);
+}

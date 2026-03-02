@@ -16,6 +16,7 @@ class AppColors {
   static const Color kDark=Color(0xFF0C080F);
   static const Color kGray=Color(0xFF919191);
   static const Color kRed=Colors.red;
+  static const Color darkSurface= Color(0xFF1E1E1E);
 
 
 

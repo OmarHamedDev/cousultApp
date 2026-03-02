@@ -1,4 +1,5 @@
 import 'package:consult_app/core/api/common/api_result.dart';
+import 'package:consult_app/src/domain/entities/booking_user_entity.dart';
 
 import '../entities/consultants_entity.dart';
 import '../entities/consultants_person_entity.dart';
@@ -14,4 +15,7 @@ abstract class ConsultantsRepository {
     required String id,
   });
 
+  Future<Result<List<BookingUserEntity>>>getAllUserBookings({
+    String? status,
+  });
 }

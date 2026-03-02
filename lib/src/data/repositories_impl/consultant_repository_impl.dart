@@ -1,5 +1,6 @@
 import 'package:consult_app/core/api/common/api_result.dart';
 import 'package:consult_app/core/api/common/execute_api_method.dart';
+import 'package:consult_app/src/domain/entities/booking_user_entity.dart';
 
 import 'package:consult_app/src/domain/entities/consultants_entity.dart';
 import 'package:consult_app/src/domain/entities/consultants_person_entity.dart';
@@ -27,10 +28,13 @@ class ConsultantRepositoryImpl implements ConsultantsRepository {
           sortBy: sortBy,
           order: order,
         );
+        if (result.data!.isEmpty || result.data == null) return [];
         return result.data!
             .map(
               (e) => ConsultantsEntity(
+              id: e.id ?? "",
                 name: e.name ?? "",
+                sessionPrice: e.sessionPrice ?? 0,
                 publicId: e.publicId ?? "",
                 title: e.title ?? "",
                 avatar: e.avatar ?? "",
@@ -77,6 +81,36 @@ class ConsultantRepositoryImpl implements ConsultantsRepository {
         );
 
         return entity;
+      },
+    );
+  }
+
+  @override
+  Future<Result<List<BookingUserEntity>>> getAllUserBookings({String? status}) {
+    return executeApi(
+      apiCall: () async {
+        var result = await consultantsRemoteDataSource.getAllUserBookings(
+          status: status,
+        );
+        if (result.data!.isEmpty || result.data == null) return [];
+        return result.data!
+            .map(
+              (e) => BookingUserEntity(
+                userId: e.user?.id ?? " ",
+                consultantId: e.consultant?.id ?? " ",
+                status: e.status ?? " ",
+                startAt: e.startAt ?? "",
+                endAt: e.endAt ?? "",
+                duration: e.duration ?? 0,
+                price: e.price ?? 0,
+                createdAt: e.createdAt ?? "",
+                consulAvatar: e.consultant?.avatar ?? "",
+                consulName: e.consultant?.name ?? "",
+                consulTitle: e.consultant?.title ?? "",
+                paymentStatus: e.payment?.status ?? "",
+              ),
+            )
+            .toList();
       },
     );
   }

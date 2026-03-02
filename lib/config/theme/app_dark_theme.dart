@@ -7,56 +7,71 @@ class AppDarkTheme {
 
   static ThemeData themeData = ThemeData(
     useMaterial3: true,
-    brightness: Brightness.dark,
+     brightness: Brightness.dark,
     scaffoldBackgroundColor: AppColors.kDark,
     primaryColor: AppColors.mainColor,
     cardColor: AppColors.kGray,
     disabledColor: AppColors.kWeight,
     canvasColor: AppColors.kWeight,
     dividerColor: AppColors.kWeight,
+    colorScheme: ColorScheme.dark(
+      surface: AppColors.darkSurface,
+      onSecondary: AppColors.kBlack,
 
+    ),
+    appBarTheme: AppBarTheme(
+      centerTitle: true,
+      elevation: 0,
+      backgroundColor: Colors.transparent,
+      scrolledUnderElevation: 0,
+      titleTextStyle: TextStyle(
+        fontSize: 20.sp,
+        fontWeight: FontWeight.bold,
+        color: AppColors.kGray,
+      ),
+    ),
     fontFamily: "Rubik",
     textTheme: TextTheme(
       //HOME(appBar)
-        headlineLarge: TextStyle(
-          fontSize: 18.sp,
-          fontWeight: FontWeight.w500,
-          color: AppColors.kGray,
-        ),
-        //HOME(appBar)
+      headlineLarge: TextStyle(
+        fontSize: 18.sp,
+        fontWeight: FontWeight.w500,
+        color: AppColors.kGray,
+      ),
 
-        headlineMedium: TextStyle(
-          fontSize: 12.sp,
-          fontWeight: FontWeight.w500,
-          color: AppColors.kGray,
-          decoration: TextDecoration.underline,
-        ),
-        //Home(Title)
-        headlineSmall: TextStyle(
-          fontSize: 15.sp,
-          fontWeight: FontWeight.w500,
-          color: AppColors.kGray,
-        ),
-        bodyLarge: TextStyle(
-          fontSize: 14.sp,
-          fontWeight: FontWeight.w400,
-          color:AppColors.kWeight,
-        ),
-        bodyMedium:  TextStyle(
-          fontSize: 12.sp,
-          fontWeight: FontWeight.w400,
-          color: Color(0xFF919191),
-        ),
-        bodySmall: TextStyle(
-          fontSize: 14.sp,
-          fontWeight: FontWeight.w500,
-          color: const Color(0xFF070D05),
-        ),
+      //HOME(appBar)
+      headlineMedium: TextStyle(
+        fontSize: 12.sp,
+        fontWeight: FontWeight.w500,
+        color: AppColors.kGray,
+        decoration: TextDecoration.underline,
+      ),
+      //Home(Title)
+      headlineSmall: TextStyle(
+        fontSize: 15.sp,
+        fontWeight: FontWeight.w500,
+        color: AppColors.kGray,
+      ),
+      bodyLarge: TextStyle(
+        fontSize: 14.sp,
+        fontWeight: FontWeight.w400,
+        color: AppColors.kWeight,
+      ),
+      bodyMedium: TextStyle(
+        fontSize: 12.sp,
+        fontWeight: FontWeight.w400,
+        color: Color(0xFF919191),
+      ),
+      bodySmall: TextStyle(
+        fontSize: 14.sp,
+        fontWeight: FontWeight.w500,
+        color: const Color(0xFF070D05),
+      ),
       displayLarge: TextStyle(
-      fontSize: 16.sp,
-      fontWeight: FontWeight.bold,
-      color: AppColors.kWeight,
-    ),
+        fontSize: 16.sp,
+        fontWeight: FontWeight.bold,
+        color: AppColors.kWeight,
+      ),
       displayMedium: TextStyle(
         fontSize: 12.sp,
         color: AppColors.kWeight,
@@ -67,12 +82,16 @@ class AppDarkTheme {
         fontWeight: FontWeight.w700,
         color: AppColors.kBlack,
       ),
-        labelMedium: TextStyle(
-          fontSize: 14.sp,
-          fontWeight: FontWeight.w500,
-          color:  AppColors.kWeight,
-
-        )
-  ),
+      labelMedium: TextStyle(
+        fontSize: 14.sp,
+        fontWeight: FontWeight.w500,
+        color: AppColors.kWeight,
+      ),
+      labelSmall: TextStyle(
+        fontSize: 14.sp,
+        fontWeight: FontWeight.w400,
+        color: AppColors.kWeight,
+      ),
+    ),
   );
 }
